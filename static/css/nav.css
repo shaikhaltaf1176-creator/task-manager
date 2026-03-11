@@ -1,0 +1,82 @@
+/* Reset default browser styles */
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Navbar container */
+.navbar {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 15px 40px;
+     background: #1e293b;
+}
+
+/* Logo section */
+.logo {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+}
+
+/* Logo text */
+#tag a {
+     text-decoration: none;
+     font-size: 22px;
+     font-weight: bold;
+     color: white;
+}
+
+/* Navigation menu */
+.main-nav ul {
+     list-style: none;
+     display: flex;
+     gap: 30px;
+     padding-left: 600px;
+}
+
+/* Navigation items */
+.main-nav li {
+     cursor: pointer;
+     font-size: 18px;
+}
+
+.nav-link {
+     color: #e5e7eb;
+     text-decoration: none;
+     padding-bottom: 4px;
+     border-bottom: 2px solid transparent;
+     font-weight: 500;
+     transition: color 150ms ease, border-color 150ms ease;
+}
+
+.nav-link:hover {
+     color: #38bdf8;
+}
+
+.nav-link--active {
+     color: #ffffff;
+     border-bottom-color: #f97316;
+}
+
+/* Button section */
+.header-btn {
+     padding-left: 80px;
+}
+
+.header-btn .btn-primary {
+     text-decoration: none;
+     background: #38bdf8;
+     color: white;
+     padding: 10px 18px;
+     border-radius: 5px;
+     font-weight: 500;
+}
+
+/* Button hover */
+.header-btn .btn-primary:hover {
+     background: #0ea5e9;
+}

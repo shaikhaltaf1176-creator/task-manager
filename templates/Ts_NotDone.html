@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<div class="index-container">
+  <div class="task-container task-list-container">
+    <div class="task-header">
+      <h2>Overdue tasks (not completed in 24 hours)</h2>
+      <p>These tasks are older than 24 hours and still not completed.</p>
+    </div>
+
+    {% if tasks %}
+      <ul class="task-list">
+        {% for task in tasks %}
+        <li class="task-item">
+          <div class="task-main">
+            <span class="task-desc">{{ task.description }}</span>
+            <span class="task-meta">
+              Created on {{ task.created_at|date:"Y-m-d" }} at {{ task.created_at|time:"H:i" }}
+              {% if task.due_date or task.due_time %}
+                · Target:
+                {% if task.due_date %}{{ task.due_date }}{% endif %}
+                {% if task.due_time %} {{ task.due_time|time:"H:i" }}{% endif %}
+              {% endif %}
+            </span>
+          </div>
+
+          <div class="task-actions">
+            <a href="{% url 'toggle_task' task.pk %}" class="task-complete-btn">
+              Completed
+            </a>
+            <a href="{% url 'delete_task' task.pk %}" class="task-delete-btn">
+              Delete
+            </a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="task-empty">
+        <h3>No overdue tasks 🎉</h3>
+        <p>Everything is either completed or less than 24 hours old.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
+

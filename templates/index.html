@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<div class="index-hero">
+  <div class="index-hero-text">
+    <h1>Plan your day, effortlessly</h1>
+    <p>Quickly capture what matters, set a time, and keep track of what’s done.</p>
+  </div>
+</div>
+
+<div class="index-container">
+  <div class="task-container">
+    <div class="task-header">
+      <h2>Add a new task</h2>
+      <p>Just a few details and you’re ready to go.</p>
+    </div>
+
+    <form class="task-form" method="post" id="task-form">
+      {% csrf_token %}
+
+      <div class="form-row">
+        <label for="id_description">Task</label>
+        <input
+          type="text"
+          id="id_description"
+          name="description"
+          placeholder="e.g. Review project proposal"
+          autocomplete="off"
+          required
+        >
+        <small class="field-hint">Keep it short and action-oriented.</small>
+      </div>
+
+      <div class="form-row row-two">
+        <div>
+          <label for="id_due_date">Date</label>
+          <input type="date" id="id_due_date" name="due_date">
+        </div>
+
+        <div>
+          <label for="id_due_time">Time</label>
+          <input type="time" id="id_due_time" name="due_time">
+        </div>
+      </div>
+
+      <div class="form-row form-footer">
+        <span class="form-error" id="form-error"></span>
+        <button type="submit" class="add-btn">
+          <span>+ Add task</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="index-container">
+  <div class="task-container task-list-container">
+    {% if tasks %}
+      <div class="task-header">
+        <h2>Your tasks</h2>
+        <p>Tap to mark tasks done, or remove them when finished.</p>
+      </div>
+
+      <ul class="task-list">
+        {% for task in tasks %}
+        <li class="task-item{% if task.completed %} task-completed{% endif %}">
+          <div class="task-main">
+            <span class="task-desc">{{ task.description }}</span>
+            <span class="task-meta">
+              {% if task.due_date %}{{ task.due_date }}{% endif %}
+              {% if task.due_time %} · {{ task.due_time|time:"H:i" }}{% endif %}
+            </span>
+          </div>
+
+          <div class="task-actions">
+            <a href="{% url 'toggle_task' task.pk %}" class="task-complete-btn">
+              Completed
+            </a>
+            <a href="{% url 'delete_task' task.pk %}" class="task-delete-btn">
+              Delete
+            </a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="task-empty">
+        <h3>No tasks yet</h3>
+        <p>Start by adding something you’d like to get done today.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  (function () {
+    const form = document.getElementById("task-form");
+    const descriptionInput = document.getElementById("id_description");
+    const errorBox = document.getElementById("form-error");
+
+    form.addEventListener("submit", function (e) {
+      errorBox.textContent = "";
+      descriptionInput.classList.remove("input-error");
+
+      const value = descriptionInput.value.trim();
+      if (!value) {
+        e.preventDefault();
+        errorBox.textContent = "Please enter a task description.";
+        descriptionInput.classList.add("input-error");
+        descriptionInput.focus();
+        return;
+      }
+
+      if (value.length > 255) {
+        e.preventDefault();
+        errorBox.textContent = "Task description is too long (max 255 characters).";
+        descriptionInput.classList.add("input-error");
+        descriptionInput.focus();
+        return;
+      }
+    });
+  })();
+</script>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<div class="index-container">
+  <div class="task-container task-list-container">
+    <div class="task-header">
+     <h2>✅ Message Sent Successfully</h2>
+     <div class='thankyou'>
+      
+          <p>Thank you for contacting us. We will reply soon.</p>
+
+          <a href="/">Go Back Home</a>
+     </div>
+   </div>
+</div>
+
+{% endblock %}

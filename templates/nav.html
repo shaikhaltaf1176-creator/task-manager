@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href={% static "css/nav.css" %}>
+</head>
+<body>
+  <nav class='navbar'>
+    <!-- Logo -->
+    <div class="logo">
+     <div id='slogo'>
+          <img src="{% static 'images/slogo.png' %}" alt="Logo" height=45px width=45px>
+     </div>
+     <div id="tag">
+          <a href="{% url 'index' %}">TaskMananger</a>
+      </div>
+      <div class="main-nav">
+      <ul>
+        <li>
+          <a href="{% url 'index' %}"
+             class="nav-link {% if request.resolver_match.url_name == 'index' %}nav-link--active{% endif %}">
+             Home
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'tasks_done' %}"
+             class="nav-link {% if request.resolver_match.url_name == 'tasks_done' %}nav-link--active{% endif %}">
+             Ts_Done
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'tasks_not_done' %}"
+             class="nav-link {% if request.resolver_match.url_name == 'tasks_not_done' %}nav-link--active{% endif %}">
+             Ts_NotDone
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}"
+             class="nav-link {% if request.resolver_match.url_name == 'contact' %}nav-link--active{% endif %}">
+             Contact
+          </a>
+        </li>
+      </ul>
+    </div> 
+    <div class="header-btn">
+      <a href="{% url 'contact' %}" class="btn-primary">Get Started</a>
+    </div> 
+</nav>
+</body>
+</html>
+

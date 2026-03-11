@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<div class="index-container">
+  <div class="task-container task-list-container">
+    <div class="task-header">
+      <h2>Contact Us</h2>
+      <p>Fill the form if you have any Quiry</p>
+    </div>
+      <form method="POST">
+          {% csrf_token %}
+                
+          <label>Name</label>
+          <input type="text" name="name" required>
+                
+          <label>Email</label>
+          <input type="email" name="email" required>
+                
+          <label>Message</label>
+          <textarea name="message" required></textarea>
+                
+          <button type="submit">Send</button>
+
+      </form>
+  </div>
+</div>
+
+{% endblock %}
+

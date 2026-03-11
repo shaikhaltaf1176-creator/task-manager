@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<div class="index-container">
+  <div class="task-container task-list-container">
+    <div class="task-header">
+      <h2>Completed tasks</h2>
+      <p>All tasks you’ve marked as completed.</p>
+    </div>
+
+    {% if tasks %}
+      <ul class="task-list">
+        {% for task in tasks %}
+        <li class="task-item task-completed">
+          <div class="task-main">
+            <span class="task-desc">{{ task.description }}</span>
+            <span class="task-meta">
+              Completed on {{ task.created_at|date:"Y-m-d" }} at {{ task.created_at|time:"H:i" }}
+              {% if task.due_date or task.due_time %}
+                · Target:
+                {% if task.due_date %}{{ task.due_date }}{% endif %}
+                {% if task.due_time %} {{ task.due_time|time:"H:i" }}{% endif %}
+              {% endif %}
+            </span>
+          </div>
+
+          <div class="task-actions">
+            <a href="{% url 'toggle_task' task.pk %}" class="task-complete-btn">
+              Mark as pending
+            </a>
+            <a href="{% url 'delete_task' task.pk %}" class="task-delete-btn">
+              Delete
+            </a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="task-empty">
+        <h3>No completed tasks yet</h3>
+        <p>Once you complete a task, it will appear here.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
+
