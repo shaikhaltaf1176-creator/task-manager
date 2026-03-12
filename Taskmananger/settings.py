@@ -77,17 +77,15 @@ WSGI_APPLICATION = 'Taskmananger.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-       'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'taskmanager_db',
+        'NAME': 'railway',
         'USER': 'root',
-        'PASSWORD': 'shaikhaltaf786',
-        'HOST': 'localhost',
+        'PASSWORD': 'auUWCyHHJGMQkkUQFfmIsfRjQsyWLRXU',
+        'HOST': 'mysql.railway.internal',
         'PORT': '3306',
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
