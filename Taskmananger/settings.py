@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zfpjblumzu73oknbwv1*780dsdh@#6v+guq96)w7vm#j9hk6(x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['task-manager-2x60.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,14 +78,21 @@ WSGI_APPLICATION = 'Taskmananger.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
-        'USER': 'root',
-        'PASSWORD': 'auUWCyHHJGMQkkUQFfmIsfRjQsyWLRXU',
-        'HOST': 'mysql.railway.internal',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tasks_django_rander',
+        'USER': 'tasks_django_rander_user',
+        'PASSWORD': 'pBKaL5sX7yHOmWzIlueSPCahI6NrkgXh',
+        'HOST': 'dpg-d6p97c9r0fns73e75230-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
+# import dj_database_url
+
+# DATABASES = {
+#     'default': dj_database_url.config(default='postgresql://tasks_django_rander_user:pBKaL5sX7yHOmWzIlueSPCahI6NrkgXh@dpg-d6p97c9r0fns73e75230-a.oregon-postgres.render.com/tasks_django_rander')
+# }
+# #postgresql://tasks_django_rander_user:pBKaL5sX7yHOmWzIlueSPCahI6NrkgXh@dpg-d6p97c9r0fns73e75230-a.oregon-postgres.render.com/tasks_django_rander
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
