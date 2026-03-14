@@ -62,6 +62,7 @@ def contact_view(request):
             message=full_message,
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=["shaikhaltaf1176@gmail.com"],
+            fail_silently=False
         )
 
         return render(request, "thankyou.html")
