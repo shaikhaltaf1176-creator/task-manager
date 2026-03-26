@@ -25,7 +25,7 @@ urlpatterns = [
     path("contact/", views.contact_view, name="contact"),
     path("tasks/done/", views.tasks_done, name="tasks_done"),
     path("tasks/not-done/", views.tasks_not_done, name="tasks_not_done"),
-    path("tasks/<int:pk>/toggle/", views.toggle_task, name="toggle_task"),
-    path("tasks/<int:pk>/delete/", views.delete_task, name="delete_task"),
+    path("tasks/<str:task_id>/toggle/", views.toggle_task, name="toggle_task"),
+    path("tasks/<str:task_id>/delete/", views.delete_task, name="delete_task"),
     path("thankyou/", views.thankyou_view, name="thankyou"),
 ]

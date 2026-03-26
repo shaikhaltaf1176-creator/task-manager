@@ -77,10 +77,10 @@
           </div>
 
           <div class="task-actions">
-            <a href="{% url 'toggle_task' task.pk %}" class="task-complete-btn">
+            <a href="{% url 'toggle_task' task.id %}" class="task-complete-btn">
               Completed
             </a>
-            <a href="{% url 'delete_task' task.pk %}" class="task-delete-btn">
+            <a href="{% url 'delete_task' task.id %}" class="task-delete-btn">
               Delete
             </a>
           </div>

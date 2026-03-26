@@ -19,7 +19,7 @@
           <div class="task-main">
             <span class="task-desc">{{ task.description }}</span>
             <span class="task-meta">
-              Completed on {{ task.created_at|date:"Y-m-d" }} at {{ task.created_at|time:"H:i" }}
+              Completed on {{ task.created_date }} at {{ task.created_time }}
               {% if task.due_date or task.due_time %}
                 · Target:
                 {% if task.due_date %}{{ task.due_date }}{% endif %}
@@ -29,10 +29,10 @@
           </div>
 
           <div class="task-actions">
-            <a href="{% url 'toggle_task' task.pk %}" class="task-complete-btn">
+            <a href="{% url 'toggle_task' task.id %}" class="task-complete-btn">
               Mark as pending
             </a>
-            <a href="{% url 'delete_task' task.pk %}" class="task-delete-btn">
+            <a href="{% url 'delete_task' task.id %}" class="task-delete-btn">
               Delete
             </a>
           </div>
